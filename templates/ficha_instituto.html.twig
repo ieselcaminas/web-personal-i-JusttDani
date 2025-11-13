@@ -1,0 +1,14 @@
+{% extends 'base.html.twig'%}
+{% block title %}Instituto{% endblock %}
+{% block body %}
+
+    <h1>Ficha del instituto</h1>
+    <a href="http://127.0.0.1:8080/" class="btn btn-sm btn-primary mb-3">Volver al listado de profesores</a>
+    <a href="http://127.0.0.1:8080/institutos" class="btn btn-sm btn-primary mb-3">Volver al listado de institutos</a>
+    {% if instituto %}
+        {{ include ('partials/datos_instituto.html.twig', {'instituto': instituto, 'profesores':profesores}) }}
+    {% else %}
+        <p>El instituto no existe</p>
+    {% endif %}
+{% endblock %}
+

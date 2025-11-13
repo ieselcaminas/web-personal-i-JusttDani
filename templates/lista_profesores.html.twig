@@ -1,0 +1,13 @@
+{% extends 'base.html.twig'%}
+{% block title %}Profesores{% endblock %}
+{% block body %}
+
+    <h1>Ficha del profesor</h1>
+    {% if profesores is not empty %}
+        {% for c in profesores %}
+            {{ include ('partials/datos_profesor.html.twig', {'profesor': c}) }}
+        {% endfor %}
+    {% else %}
+        <p>El profesor no existe</p>
+    {% endif %}
+{% endblock %}

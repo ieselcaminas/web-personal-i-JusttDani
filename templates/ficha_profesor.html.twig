@@ -1,0 +1,13 @@
+{% extends 'base.html.twig'%}
+{% block title %}Profesores{% endblock %}
+{% block body %}
+
+    <h1>Ficha del profesor</h1>
+    <a href="http://127.0.0.1:8080/" class="btn btn-sm btn-primary mb-3">Volver al listado de profesores</a>
+    {% if profesor %}
+        {{ include ('partials/datos_profesor.html.twig', {'profesor': profesor}) }}
+    {% else %}
+        <p>El profesor no existe</p>
+    {% endif %}
+{% endblock %}
+

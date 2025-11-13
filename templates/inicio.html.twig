@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profesores{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="http://127.0.0.1:8080/">Gestión de Profesores</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8080/">Profesores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8080/institutos">Institutos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="http://127.0.0.1:8080/logout">Cerrar sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    <h1 class="mb-3">Profesores</h1>
+    <h2 class="mb-4">Bienvenido a la web de profesores</h2>
+
+    <p>Lista de usuarios</p>
+    <a href="http://127.0.0.1:8080/profesor/nuevo" class="btn btn-sm btn-primary mb-3">Añadir un usuario</a>
+
+    {% if profesores|length > 0 %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Instituto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profesor in profesores %}
+                    <tr>
+                        <td>
+                            <a href="http://127.0.0.1:8080/profesor/{{ profesor.id }}">
+                                {{ profesor.email }}
+                            </a>
+                        </td>
+                        <td>{{ profesor.nombre }}</td>
+                        <td>{{ profesor.telefono }}</td>
+                        <td>
+                            <a href="http://127.0.0.1:8080/instituto/{{ profesor.instituto.id }}">
+                                {{ profesor.instituto.nombre }}
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="http://127.0.0.1:8080/profesor/editar/{{ profesor.id }}" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>
+                                <a href="http://127.0.0.1:8080/profesor/delete/{{ profesor.id }}" class="btn btn-sm btn-danger"
+                                   onclick="return confirm('¿Estás seguro de que deseas eliminar este profesor?');">
+                                    Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-info mt-3">
+            No hay usuarios registrados.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

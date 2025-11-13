@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profesores del Instituto {{ instituto.nombre }}{% endblock %}
+
+{% block body %}
+<h1>Profesores del Instituto {{ instituto.nombre }}</h1>
+
+{% if profesores is not empty %}
+    <ul>
+        {% for profesor in profesores %}
+            <li>
+                <a href="{{ path('ficha_profesor', {'codigo': profesor.id}) }}">
+                    {{ profesor.nombre }} {{ profesor.apellidos }}
+                </a>
+                - {{ profesor.telefono }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay profesores asociados a este instituto.</p>
+{% endif %}
+
+<a href="{{ path('ficha_instituto', {'codigo': instituto.id}) }}">⬅ Volver al instituto</a>
+{% endblock %}

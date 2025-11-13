@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h1>Profesores</h1>
+
+	<h2>Bienvenido a la web de profesores.</h2>
+
+	<p>Página de inicio</p>
+
+	{% for profesor in profesores %}
+
+		 {{ include ('partials/datos_profesor.html.twig', {'profesor': profesor})}}
+
+	{% endfor %}
+
+{% endblock %}

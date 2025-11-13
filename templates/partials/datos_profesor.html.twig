@@ -1,0 +1,8 @@
+<ul>
+    <li><strong>Nombre</strong>: {{ profesor.nombre }}</li>
+    <li><strong>Teléfono</strong>: {{ profesor.telefono }}</li>
+    {% if profesor.instituto %}
+    <li><strong>Instituto</strong>: {{ profesor.instituto.nombre }}</li>
+    {% endif %}
+    <li><strong>E-mail</strong>: {{ profesor.email }}</li>
+</ul>

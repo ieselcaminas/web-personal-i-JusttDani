@@ -1,0 +1,19 @@
+<ul>
+    <li><strong>Nombre</strong>: {{ instituto.nombre }}</li>
+</ul>
+
+<h3>Profesores del Instituto</h3>
+
+{% if profesores is defined and profesores|length > 0 %}
+    <ul>
+        {% for profesor in profesores %}
+            <li>
+                <a href="{{ path('ficha_profesor', {'codigo': profesor.id}) }}">
+                    {{ profesor.nombre }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay profesores asociados a este instituto.</p>
+{% endif %}

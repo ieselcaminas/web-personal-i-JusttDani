@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Institutos{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="http://127.0.0.1:8080/">Gestión de Institutos</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8080/">Profesores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8080/institutos">Institutos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="http://127.0.0.1:8080/logout">Cerrar sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+    <h1 class="mb-3">Institutos</h1>
+    <h2 class="mb-4">Bienvenido a la web de institutos</h2>
+    <p>Lista de institutos</p>
+        <a href="http://127.0.0.1:8080/instituto" class="btn btn-sm btn-primary">Añadir un instituto </a>
+
+    {% if institutos|length > 0 %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instituto in institutos %}
+                    <tr>
+                        <td>
+                            <a href="http://127.0.0.1:8080/instituto/{{instituto.id}}">
+                                {{ instituto.id }}
+                            </a>
+                        </td>
+                        <td>{{ instituto.nombre }}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href=" http://127.0.0.1:8080/instituto/editar/{{instituto.id}}" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>
+                                <a href="http://127.0.0.1:8080/instituto/delete/{{instituto.id}}" class="btn btn-sm btn-danger"
+                                   onclick="return confirm('¿Estás seguro de que deseas eliminar este instituto?');">
+                                    Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-info mt-3">
+            No hay institutos registrados.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
