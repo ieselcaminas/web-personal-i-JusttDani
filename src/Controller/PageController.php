@@ -181,7 +181,6 @@ public function editar(ManagerRegistry $doctrine, Request $request, int $codigo)
     #[Route('/profesores/buscar/{texto}', name: 'buscar_profesor')]
     public function buscar(ProfesorRepository $repositorio, $texto): Response{
 
-        //Si no existe el elemento con dicha clave devolvemos null
         $profesor = $repositorio->findByName($texto);
 
         return $this->render('lista_profesor.html.twig', [
@@ -236,7 +235,6 @@ public function delete(ManagerRegistry $doctrine, int $codigo): Response{
         $repositorio = $doctrine->getRepository(Instituto::class);
         $re = $doctrine->getRepository(Profesor::class)->findBy(['instituto' => $codigo]);
 
-        //Si no existe el elemento con dicha clave devolvemos null
         $instituto = $repositorio->find($codigo);
         return $this->render('ficha_instituto.html.twig', ['instituto' => $instituto , 'profesores' => $re]);
     }
@@ -301,12 +299,9 @@ public function profesoresPorInstituto(ManagerRegistry $doctrine, int $codigo): 
         throw $this->createNotFoundException('Instituto no encontrado');
     }
 
-    // Opción 1: Usando la relación definida en la entidad Instituto
     $profesores = $instituto->getProfesores();
 
-    // Opción 2 (alternativa): Buscar directamente por el campo instituto
-    // $repositorioProfesor = $doctrine->getRepository(Profesor::class);
-    // $profesores = $repositorioProfesor->findBy(['instituto' => $instituto]);
+
 
     return $this->render('lista_profesores_instituto.html.twig', [
         'instituto' => $instituto,
